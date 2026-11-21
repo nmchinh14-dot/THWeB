@@ -1,0 +1,23 @@
+@model IReadOnlyList<HangHoa>
+@{
+    ViewData["Title"] = "Ngô Minh Chính";
+}
+
+@if (TempData["ThongBao"] is string thongBao)
+{
+    <p class="notification success" role="status">@thongBao</p>
+}
+
+<div class="content_top">
+    <div class="heading">
+        <h3>Ngô Minh Chính</h3>
+    </div>
+    <div class="see">
+        <p><a asp-controller="HangHoa" asp-action="Create">Thêm hàng hóa mới</a></p>
+    </div>
+    <div class="clear"></div>
+</div>
+<p id="filter-status" class="notification error" role="status" hidden></p>
+<div id="danh-sach-hang-hoa" data-filter-url="@Url.Action("LocHangHoa", "Home")" aria-live="polite" aria-busy="false">
+    <partial name="NgoMinhChinh_DanhSachHangHoa" model="Model" />
+</div>

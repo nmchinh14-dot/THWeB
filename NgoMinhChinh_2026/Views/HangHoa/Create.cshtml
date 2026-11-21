@@ -1,0 +1,51 @@
+@model HangHoa
+@{
+    ViewData["Title"] = "Thêm hàng hóa mới";
+}
+
+<div class="content_top">
+    <div class="heading">
+        <h3>Ngô Minh Chính</h3>
+    </div>
+    <div class="see">
+        <p><a asp-controller="Home" asp-action="Index">Danh sách hàng hóa</a></p>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<form asp-controller="HangHoa" asp-action="Create" method="post" class="product-form">
+    <h1>Thêm hàng hóa mới</h1>
+    <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+    <div class="form-field">
+        <label asp-for="MaLoai"></label>
+        <select asp-for="MaLoai" asp-items="ViewBag.LoaiHang">
+            <option value="">-- Chọn loại hàng --</option>
+        </select>
+        <span asp-validation-for="MaLoai" class="field-validation"></span>
+    </div>
+    <div class="form-field">
+        <label asp-for="TenHang"></label>
+        <input asp-for="TenHang" maxlength="50" />
+        <span asp-validation-for="TenHang" class="field-validation"></span>
+    </div>
+    <div class="form-field">
+        <label asp-for="Gia"></label>
+        <input asp-for="Gia" type="number" step="any" aria-describedby="gia-hint" />
+        <small id="gia-hint">Giá từ 100 đến 5000.</small>
+        <span asp-validation-for="Gia" class="field-validation"></span>
+    </div>
+    <div class="form-field">
+        <label asp-for="Anh"></label>
+        <input asp-for="Anh" maxlength="100" placeholder="Img_1.jpg" aria-describedby="anh-hint" />
+        <small id="anh-hint">Tên file ảnh có đuôi .jpg, .png, .gif hoặc .tiff.</small>
+        <span asp-validation-for="Anh" class="field-validation"></span>
+    </div>
+    <div class="form-actions">
+        <button type="submit" class="primary-button">Thêm hàng hóa</button>
+        <a asp-controller="Home" asp-action="Index">Quay lại</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
